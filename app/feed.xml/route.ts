@@ -1,7 +1,5 @@
 import {performRequest} from "../../lib/datocms";
 import {Feed} from "feed";
-import {Enclosure} from "feed/lib/typings";
-
 
 export async function GET() {
 
