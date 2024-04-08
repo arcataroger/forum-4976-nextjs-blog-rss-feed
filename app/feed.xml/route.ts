@@ -6,7 +6,8 @@ import {Enclosure} from "feed/lib/typings";
 export async function GET() {
 
     // Root of your website
-    const baseUrl = 'https://forum-4976-nextjs-blog-rss-feed.vercel.app/'
+    const baseUrl = 'https://forum-4976-nextjs-blog-rss-feed.vercel.app/';
+    const feedUrl = new URL('/feed.xml', baseUrl).toString();
 
     const {allPosts, _site} = await performRequest({
         query: RSS_QUERY, // Your Dato query
@@ -16,8 +17,8 @@ export async function GET() {
     const feed = new Feed({
         title: 'RSS Example with DatoCMS and Next.js',
         description: "Using DatoCMS and Next.js with the Feed lib to generate a RSS feed",
-        id: baseUrl,
-        link: baseUrl,
+        id: feedUrl,
+        link: feedUrl,
         language: "en", // optional, used only in RSS 2.0, possible values: http://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes
         image: allPosts[0].coverImage.responsiveImage.src ? encodeURI(allPosts[0].coverImage.responsiveImage.src) : undefined,
         favicon: _site.favicon?.url ?? undefined,
